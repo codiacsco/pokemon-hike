@@ -947,10 +947,30 @@ static bool8 HandleMainMenuInput(u8 taskId)
     return FALSE;
 }
 
-static void Task_HandleMainMenuInput(u8 taskId)
+static void Task_HandleMainMenuInput(u8 taskId) //from discord
 {
     if (HandleMainMenuInput(taskId))
         gTasks[taskId].func = Task_HighlightSelectedMainMenuItem;
+}
+
+const u8 gText_DefaultPlayerName[] = _("testname");
+static void Task_NewGameNoBirchSpeech(u8 taskId)
+{
+    const u8 *name;
+    u8 i;
+
+    name = gText_DefaultPlayerName;
+
+    for (i = 0; i < PLAYER_NAME_LENGTH; i++)
+        gSaveBlock2Ptr->playerName[i] = name[i];
+    gSaveBlock2Ptr->playerName[PLAYER_NAME_LENGTH] = EOS;
+
+    gSaveBlock2Ptr->playerGender = MALE;
+
+    FreeAllWindowBuffers();
+    ResetAllPicSprites();
+    SetMainCallback2(CB2_NewGame);
+    DestroyTask(taskId);
 }
 
 static void Task_HandleMainMenuAPressed(u8 taskId)
@@ -1079,7 +1099,9 @@ static void Task_HandleMainMenuAPressed(u8 taskId)
             default:
                 gPlttBufferUnfaded[0] = RGB_BLACK;
                 gPlttBufferFaded[0] = RGB_BLACK;
-                gTasks[taskId].func = Task_NewGameBirchSpeech_Init;
+                //gTasks[taskId].func = Task_NewGameBirchSpeech_Init; //remember this -codiacs
+                gTasks[taskId].func = Task_NewGameNoBirchSpeech;
+        
                 break;
             case ACTION_CONTINUE:
                 gPlttBufferUnfaded[0] = RGB_BLACK;
