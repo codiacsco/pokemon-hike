@@ -762,6 +762,15 @@ static void Task_DisplayMainMenu(u8 taskId)
     s16 *data = gTasks[taskId].data;
     u16 palette;
 
+    /*
+    // makes you go directly into saved game without main menu (crashes if you have no saved game lol)
+    gPlttBufferUnfaded[0] = RGB_BLACK;
+    gPlttBufferFaded[0] = RGB_BLACK;
+    SetMainCallback2(CB2_ContinueSavedGame);
+    DestroyTask(taskId);
+    */
+    //
+
     if (!gPaletteFade.active)
     {
         SetGpuReg(REG_OFFSET_WIN0H, 0);
