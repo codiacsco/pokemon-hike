@@ -44,10 +44,11 @@
 #include "berry_powder.h"
 #include "mystery_gift.h"
 #include "union_room_chat.h"
-#include "constants/map_groups.h"
+//#include "constants/map_groups.h" //this doesn't do shit lmao, i removed it and nothing broke, why is there a red herring in this repo q-q
 #include "constants/items.h"
 #include "difficulty.h"
 #include "follower_npc.h"
+//#include "data/maps/map_groups.json"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -132,7 +133,21 @@ static void ClearFrontierRecord(void)
 static void WarpToTruck(void)
 {
     //SetWarpDestination(MAP_GROUP(MAP_INSIDE_OF_TRUCK), MAP_NUM(MAP_INSIDE_OF_TRUCK), WARP_ID_NONE, -1, -1);
-    SetWarpDestination(MAP_GROUP(MAPSEC_LITTLEROOT_TOWN), MAP_NUM(MAPSEC_LITTLEROOT_TOWN), WARP_ID_NONE, -1, -1);
+
+    
+    //SetWarpDestination(MAP_GROUP(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F), MAP_NUM(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F), WARP_ID_NONE, -1, -1); //WORKS
+
+    //SetWarpDestination(MAP_GROUP(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), MAP_NUM(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), WARP_ID_NONE, -1, -1); //ALSO WORKS
+
+    //SetWarpDestination(MAP_GROUP(MAP_ROUTE102), MAP_NUM(MAP_ROUTE102), WARP_ID_NONE, -1, -1); //ALSO WORKS
+
+    //SetWarpDestination(MAP_GROUP(LittlerootTown_BrendansHouse_2F), MAP_NUM(LittlerootTown_BrendansHouse_2F), WARP_ID_NONE, -1, -1);
+    //LittlerootTown_BrendansHouse_2F
+    //SetWarpDestination(MAP_GROUP(MAPSEC_LITTLEROOT_TOWN), MAP_NUM(MAPSEC_LITTLEROOT_TOWN), WARP_ID_NONE, -1, -1);
+    
+    //SetWarpDestination(MAP_GROUP(MAPSEC_ROUTE_103), MAP_NUM(MAPSEC_ROUTE_103), WARP_ID_NONE, -1, -1); //funny bug to have a trainer battle and send out "nothing"
+    SetWarpDestination(MAP_GROUP(MAP_MAUVILLE_CITY), MAP_NUM(MAP_MAUVILLE_CITY), WARP_ID_NONE, -1, -1); //funny bug to have a trainer battle and send out "nothing"
+
     WarpIntoMap();
 }
 
